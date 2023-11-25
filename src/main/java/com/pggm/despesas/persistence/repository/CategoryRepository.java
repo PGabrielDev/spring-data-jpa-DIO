@@ -1,0 +1,9 @@
+package com.pggm.despesas.persistence.repository;
+
+import com.pggm.despesas.persistence.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CategoryRepository  extends JpaRepository<Category, Long> {
+}
