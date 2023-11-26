@@ -12,4 +12,8 @@ public record CategoryDTO(
     public Category ToCategoryPersitence() {
         return new Category(id, category);
     }
+
+    public static CategoryDTO with(Long aId, String aCategory) {
+        return new CategoryDTO(aId, aCategory);
+    }
 }

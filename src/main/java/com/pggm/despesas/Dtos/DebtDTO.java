@@ -13,8 +13,20 @@ public record DebtDTO(
         CategoryDTO category
 ) {
 
-    public Debt toDebtPersistence(){
-        return new Debt(id,name,description, category.ToCategoryPersitence());
+    public Debt toDebtPersistence() {
+        return new Debt(id, name, description, category.ToCategoryPersitence());
     }
 
+    public static DebtDTO with(Long id, String name, String description, Category category) {
+        return new DebtDTO(
+                id,
+                name,
+                description,
+                CategoryDTO.with(
+                        category.getId(),
+                        category.getCategory()
+                );
+
+        );
+    }
 }
