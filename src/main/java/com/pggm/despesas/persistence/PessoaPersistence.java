@@ -1,19 +1,16 @@
 package com.pggm.despesas.persistence;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity(name = "pessoas")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
+@Getter
+@Setter
 public class PessoaPersistence {
 
     @Id
@@ -23,7 +20,7 @@ public class PessoaPersistence {
     @Column(name = "nome", nullable = false)
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Debt> debts;
 
 }

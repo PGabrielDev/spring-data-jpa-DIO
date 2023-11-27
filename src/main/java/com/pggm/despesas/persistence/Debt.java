@@ -1,6 +1,7 @@
 package com.pggm.despesas.persistence;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +26,13 @@ public class Debt {
     private String description;
 
 
-    @OneToOne(targetEntity = Category.class)
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private Category category;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "pessoa_id")
+    private PessoaPersistence pessoa;
 
 }

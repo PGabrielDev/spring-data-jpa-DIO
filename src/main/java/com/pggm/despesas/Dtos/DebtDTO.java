@@ -6,7 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.OneToOne;
 
 public record DebtDTO(
-        Long id,
+
         String name,
         String description,
 
@@ -14,19 +14,21 @@ public record DebtDTO(
 ) {
 
     public Debt toDebtPersistence() {
-        return new Debt(id, name, description, category.ToCategoryPersitence());
+        return Debt.builder()
+                .name(name)
+                .description(description)
+                .category(category.ToCategoryPersitence())
+                .build();
     }
 
     public static DebtDTO with(Long id, String name, String description, Category category) {
         return new DebtDTO(
-                id,
                 name,
                 description,
                 CategoryDTO.with(
                         category.getId(),
                         category.getCategory()
-                );
-
+                )
         );
     }
 }
